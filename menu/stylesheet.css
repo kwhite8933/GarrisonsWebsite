@@ -1,0 +1,43 @@
+/* Entire body of index.html */
+body{
+	margin: auto;
+	text-align: center;
+	background-color: #BB1200;
+	font-family: 'Lato', 'Montserrat', sans-serif;
+}
+
+/* Each menu item displayed */
+div#menu{
+	background-color: #FFFFF0;
+}
+
+/* Displays the day's hours underneath the navigation bar */
+div#todaysHours{
+	padding: 10px;
+	padding-bottom: 5px;
+	margin: auto;
+	background-color: white;
+}
+
+/* Entire navigation bar */
+nav.navNavigationBar.navbar.navbar-default{
+	background-color: #BB1200;
+	border: none;
+}
+
+/* Should be same as navigation bar color to remove appearance of rounded corners */
+/* Seems like a really hacky way to do this but works for now */
+div#divNavigationBar{
+	background-color: #BB1200;
+}
+
+
+/* removes margin at bottom of navigation bar */
+.navbar-default{
+	margin-bottom: 0px;
+}
+
+/* Lenthens input field of edit description modal */
+#inputEditDescription{
+	width: 500px;
+}
