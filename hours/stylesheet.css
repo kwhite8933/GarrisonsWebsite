@@ -47,6 +47,10 @@ div#fullHours{
 	background-color: white;
 }
 
+.glyphicon-pencil{
+	cursor: pointer;
+}
+
 @media( max-width: 771px ){
 	div#fullHours{
 		font-size: 15px;

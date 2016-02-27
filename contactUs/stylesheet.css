@@ -1,0 +1,98 @@
+/* Entire body of contactUs.html */
+body{
+	margin: auto;
+	text-align: center;
+	font-family: 'Lato', 'Montserrat', sans-serif;
+	background-color: #BB1200;
+}
+
+/* Entire navigation bar */
+nav.navNavigationBar.navbar.navbar-default{
+	background-color: #BB1200;
+	border: none;
+}
+
+/* Should be same as navigation bar color to remove appearance of rounded corners */
+/* Seems like a really hacky way to do this but works for now */
+div#divNavigationBar{
+	background-color: #BB1200;
+}
+
+
+/* removes margin at bottom of navigation bar */
+.navbar-default{
+	margin-bottom: 0px;
+}
+
+/* Displays the day's hours underneath the navigation bar */
+div#todaysHours{
+	padding: 10px;
+	padding-bottom: 2px;
+	margin: auto;
+	background-color: white;
+}
+
+/* Keeps the map and the remaining part of the page lined up correctly */
+div#mapDiv{
+	margin: 50px;
+}
+
+/* Formats where the google maps map is placed */
+iframe{ 
+	width: 100%;
+	height: 300px;
+}
+
+#contactInfo{
+	width: 25%;
+	float: right;
+	text-align: left;
+}
+
+#contactForm{
+	width: 70%;
+	float: left;
+}
+
+.title{
+	margin-top: 48px;
+	font-style: bold;
+	font-size: 15px;
+}
+
+/* "Contact Us" large text */
+h1{
+	font-size: 50px;
+	text-align: left;
+}
+
+/* Extended underline underneath "Contact Us" header */
+#extendedLine{
+	width: 100%;
+	height: 3px;
+	border-top: 2px dotted black;
+	border-bottom: 2px dotted black;
+	font-size:0;
+}
+
+h2{
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+#formContactUs{
+	text-align: left;
+}
+
+#formContactUs input{
+	text-align: left;
+	margin-bottom: 10px;
+	width: 500px;
+}
+
+#contactForm textarea{
+	float: right;
+	width: 300px;
+	height: 130px;
+	overflow: hidden;
+}

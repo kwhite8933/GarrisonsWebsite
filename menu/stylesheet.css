@@ -41,3 +41,7 @@ div#divNavigationBar{
 #inputEditDescription{
 	width: 500px;
 }
+
+.glyphicon-pencil, .glyphicon-trash, .glyphicon-plus{
+	cursor: pointer;
+}
