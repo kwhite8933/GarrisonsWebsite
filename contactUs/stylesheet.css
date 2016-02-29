@@ -24,6 +24,12 @@ div#divNavigationBar{
 	margin-bottom: 0px;
 }
 
+a.navbar-brand{
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
 /* Displays the day's hours underneath the navigation bar */
 div#todaysHours{
 	padding: 10px;

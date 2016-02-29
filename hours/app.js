@@ -50,7 +50,6 @@ $(document).ready( function(){
 	var day = date.getDay();
 	var hours = weeklyHours[day].hours;
 
-	console.log(day);
 	$("#todaysHours").append( "<p>Today's Hours:  " + weeklyHours[day].hours + "</p>" );
 
 });
