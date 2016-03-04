@@ -1,0 +1,68 @@
+<div id="menu" ng-repeat="item in main.menuSides" class="item">
+	<div ng-controller="addSideController as addSide">
+		<span class="glyphicon glyphicon-plus" ng-click="addSide.toggle()"></span>
+		<div ng-hide="addSide.showForm">
+			<form id="formAddSide" ng-submit="main.addSide($index)">
+				<br>
+				<input type="text" placeholder="Name" ng-model="main.name"></input>
+				<input type="text" placeholder="Price" ng-model="main.price"></input>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<br>
+
+	<span><strong>{{item.name}}</strong></span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#sideNameModal{{$index}}"></span>
+	<!-- Edit Name Modal -->
+	<div class="modal fade" id="sideNameModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.name}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.name"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Name Modal -->
+	<span class="glyphicon glyphicon-trash" ng-click="main.deleteSideName($index)"></span>
+	<br>
+	<span>{{item.price | currency}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#sidePriceModal{{$index}}"></span>
+	<!-- Edit Price Modal -->
+	<div class="modal fade" id="sidePriceModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.price | currency}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.price"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Price Modal -->
+	<br><br>
+</div>
+<div id="addedPlus" ng-controller="addSideController as addSide">
+	<span class="glyphicon glyphicon-plus" ng-click="addSide.toggle()"></span>
+	<div ng-hide="addSide.showForm">
+		<form id="formAddApp2" ng-submit="main.addSide(-1)">
+			<br>
+			<input type="text" placeholder="Name" ng-model="main.name"></input>
+			<input type="text" placeholder="Price" ng-model="main.price"></input>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

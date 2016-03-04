@@ -2,30 +2,49 @@
 	var app = angular.module('garrisons', []);
 
 	app.controller("MainController", function(){
-		this.menu = menuItems;
+		this.menuAppetizers = appetizers;
+    this.menuSides = sideDishes;
 
 		this.addAppetizer = function(index){
       if( this.name === "" || this.description === "" || this.price === "" ){
         return;
       }
 			else if( index === -1 ){
-        menuItems.push({name: this.name, description: this.description, price: this.price});
+        appetizers.push({name: this.name, description: this.description, price: this.price});
 			}
       else{
-        menuItems.splice(index, 0, {name: this.name, description: this.description, price: this.price});
+        appetizers.splice(index, 0, {name: this.name, description: this.description, price: this.price});
       }
       this.name = '';
 			this.description = '';
 			this.price = '';
 		};
 
-    // example on how to edit a value on the fly, refractor for own code
-    this.editName = function(index){
-      menuItems[index].description = index;
+    this.addSide = function(index){
+      if( this.name === "" || this.price === "" ){
+        return;
+      }
+      else if( index === -1 ){
+        sideDishes.push({name: this.name, price: this.price});
+      }
+      else{
+        sideDishes.splice(index, 0, {name: this.name, price: this.price});
+      }
+      this.name = '';
+      this.price = '';
     };
 
-    this.deleteName = function(index){
-      menuItems.splice( index, 1 );
+    // example on how to edit a value on the fly, refractor for own code
+    this.editAppName = function(index){
+      appetizers[index].description = index;
+    };
+
+    this.deleteAppName = function(index){
+      appetizers.splice( index, 1 );
+    };
+
+    this.deleteSideName = function(index){
+      sideDishes.splice( index, 1 );
     };
 
 	});
@@ -39,8 +58,30 @@
 
   });
 
+  app.directive('appetizerList', function(){
+    return{
+      rectrict: 'AE',
+      templateUrl: "appetizerList.html"
+    };
+  });
+
+  app.controller('addSideController', function(){
+    this.showForm = true;
+
+    this.toggle = function(){
+      this.showForm = !this.showForm;
+    };
+
+  });
+  app.directive('sidesList', function(){
+    return{
+      rectrict: 'AE',
+      templateUrl: "sidesList.html"
+    };
+  });
+
   // Array of appetizers and their values
-  var menuItems = [
+  var appetizers = [
   	{
   		name: "Garrison's Sampler",
   		description: "An assortment of buffalo tenders, fried mozzerella, and potato skins.",
@@ -114,6 +155,17 @@
   		price: 8.99
   	}
   ];
+
+  var sideDishes = [
+    {
+      name: "Baked Potato",
+      price: 1.99
+    },{
+      name: "French Fries",
+      price: 2.99
+    }
+  ]
+
 })();
 
 $(document).ready( function(){
