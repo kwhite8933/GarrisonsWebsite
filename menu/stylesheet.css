@@ -11,6 +11,10 @@ div#menu{
 	background-color: #FFFFF0;
 }
 
+div#addedPlus{
+	background-color: #FFFFF0;
+}
+
 /* Displays the day's hours underneath the navigation bar */
 div#todaysHours{
 	padding: 10px;
@@ -31,7 +35,6 @@ div#divNavigationBar{
 	background-color: #BB1200;
 }
 
-
 /* removes margin at bottom of navigation bar */
 .navbar-default{
 	margin-bottom: 0px;
@@ -40,6 +43,17 @@ div#divNavigationBar{
 /* Lenthens input field of edit description modal */
 #inputEditDescription{
 	width: 500px;
+}
+
+#myTabs{
+	margin: auto;
+	display: inline-block;
+	border: none;
+	width: 70%;
+}
+
+#myTabs ul li a{
+	color: black;
 }
 
 .glyphicon-pencil, .glyphicon-trash, .glyphicon-plus{
