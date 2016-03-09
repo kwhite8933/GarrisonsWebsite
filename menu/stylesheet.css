@@ -11,8 +11,11 @@ div#menu{
 	background-color: #FFFFF0;
 }
 
+
+/* Button at bottom of page that adds a new item if the user desires */
 div#addedPlus{
 	background-color: #FFFFF0;
+	margin-bottom: 100px;
 }
 
 /* Displays the day's hours underneath the navigation bar */

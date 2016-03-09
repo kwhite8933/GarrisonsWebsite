@@ -69,11 +69,10 @@
 		</div>
 		<div id="todaysHours"></div>
 		<div id="fullHours">
-			<div ng-controller="hoursController as hours">
+			<div ng-controller="hoursController">
 				<h3>Weekly Hours</h3>
-				<div ng-repeat="day in hours.hours">
-					<span>{{day.day}}</span>
-					<span>{{day.hours}}</span>
+				<div ng-repeat="day in DailyHours">
+					<span>{{DailyHours[$index][1]}}: 11AM - {{DailyHours[$index][2]}}</span>
 					<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editHoursModal{{$index}}"></span>
 					<!-- Edit Hours Modal -->
 					<div class="modal fade" id="editHoursModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -81,10 +80,10 @@
 					    <div class="modal-content">
 					      <div class="modal-header"> <!-- Modal Header -->
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title" id="myModalLabel">{{day.hours}}</h4>
+					        <h4 class="modal-title" id="myModalLabel">{{DailyHours[$index][1]}}</h4>
 					      </div> <!-- Modal Header -->
 					      <div class="modal-body"> <!-- Modal Body -->
-					        <input type="text" ng-model="day.hours"></input>
+					        <input type="text" ng-model="DailyHours[$index][2]"></input>
 					      </div> <!-- Moday Body -->
 					      <div class="modal-footer"> <!-- Modal Footer -->
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
