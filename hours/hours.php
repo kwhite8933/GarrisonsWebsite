@@ -6,26 +6,31 @@
 
 	mysql_connect($servername, $username, $password) or die("<p>Error connecting to MySQL: " . mysql_error() . "</p>");
 
-	echo "<p>Connected to MySQL!</p>";
+	#echo "<p>Connected to MySQL!</p>";
 
 	$db = "kwhite";
 
 	mysql_select_db( $db )
 	  or die("<p>Error selecting the databse kwhite: " . mysql_error() . "</p>");
 
-	echo "<p>Connected to MySQL, using databse <b>$db</b>.</p>";
+	#echo "<p>Conneted to database: " . $db . "</p>";
 
-	$result = mysql_query("SHOW TABLES;");
+	$qSelectAll = 'SELECT * FROM hours';
 
-	if(!$result){
-		die("<p>Error inlisting tables: " . mysql_error() . "</p");
+	$result=mysql_query($qSelectAll);
+
+	if( ! $result ){
+		die( 'Error loading data from hours' );
 	}
 
-	echo "<p>Tables in databse:</p>";
-	echo "<ul>";
+	$hours = array();
 	while( $row=mysql_fetch_row($result) ){
-		echo "<li>Table: {$row[0]}</li>";
+		$hoursData[] = $row;
 	}
-	echo "</ul>";
+
+	$arr = array();
+	$arr = $hoursData;
+
+	echo json_encode($arr);
 
  ?>
