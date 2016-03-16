@@ -1,0 +1,118 @@
+/* Entire body of homepage.html */
+body{
+	margin: auto;
+	text-align: center;
+	font-family: 'Lato', 'Montserrat', sans-serif;
+	overflow-x: hidden;
+	/*background-color: #BB1200;*/
+}
+
+/* Each menu item displayed */
+div#menu{
+	background-color: #FFFFF0;
+}
+
+/* Displays the day's hours underneath the navigation bar */
+div#todaysHours{
+	padding: 10px;
+	padding-bottom: 0px;
+	margin: auto;
+	background-color: white;
+}
+
+/*.ui-autocomplete {
+    max-height: 200px;
+    max-width: 500px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar
+    overflow-x: hidden;
+    background-color: white;
+    color: black;
+    text-align: left;
+	list-style-type: none;
+	padding: none;
+    margin: none;
+}
+
+.ui-autocomplete input{
+	list-style-type: none;
+	padding: none;
+    margin: none;	
+}
+
+.ui-autocomplete li:hover{
+	background-color: red;
+}*/
+
+/* Bolds the text in the picture carousel */
+.captionText{
+	font-weight: bold;
+}
+
+/* Changes the text color of the capton on the picture carousel */
+.carousel-caption a{
+	color: white;
+}
+
+/* Entire navigation bar */
+nav.navNavigationBar.navbar.navbar-default{
+	background-color: #BB1200;
+	border: none;
+}
+
+/* Should be same as navigation bar color to remove appearance of rounded corners */
+/* Seems like a really hacky way to do this but works for now */
+div#divNavigationBar{
+	background-color: #BB1200;
+}
+
+
+/* removes margin at bottom of navigation bar */
+.navbar-default{
+	margin-bottom: 0px;
+}
+
+/* Bootstrap carousel */
+div#carousel{
+	margin: auto auto;
+	padding: none;
+}
+
+div#styleLine{
+	padding: 2px;
+	background-color: #BB1200;
+}
+
+/* Remaining portion of page if carousel takes up the entire width */
+div.belowCarousel{
+	padding: 50px 100px;
+	/*background-color: black;*/
+}
+
+/* Description on the homepage */
+div#description{
+	text-align: left;
+	font-size: 20px;
+}
+
+/* When the screen shrinks to less than 480 pixels, the area below
+   the picture carousel resizes to better format the text */
+@media (max-width: 479px){
+	div.belowCarousel{
+		padding: 20px 40px;
+	}
+
+	div#description{
+		font-size: 10px;
+	}
+}
+
+@media (max-width: 767px){
+	div.belowCarousel{
+		padding: 30px 60px;
+	}
+
+	div#description{
+		font-size: 15px;
+	}
+}

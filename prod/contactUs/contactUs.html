@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Garrison's</title>
+		<!-- bootstrap -->
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<!-- Google APIs for google maps integration --> 
+		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script type="text/javascript" src="app.js"></script> 
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<!-- bootstrap javascript-->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<!-- bootstrap css -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="stylesheet.css"/>
+		<!-- Lato font -->
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		<!-- Montserrat font -->
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="divNavigationBar"> <!-- NavigationBar -->
+			<nav id="nav_" class="navbar navbar-default navNavigationBar">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#garrisons-navbar-collapse" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">Brand</a>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="garrisons-navbar-collapse">
+			      <ul class="nav navbar-nav">
+			        <li><a href="../homepage/homepage.html">Home<span class="sr-only"></span></a></li>
+			        <li><a href="../menu/index.html">Menu</a></li>
+			        <li><a href="#">Catering</a></li>
+			        <li><a href="#">Employment</a></li>
+			        <li><a href="../hours/hours.html">Hours</a></li>
+			        <li><a href="#">Gallery</a></li>
+			        <li class="active"><a href="">Contact &amp Directions</a></li>
+			      </ul>
+			      <form class="navbar-form navbar-left" role="search">
+			        <div class="form-group">
+			          <input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			      </form>
+			      <ul class="nav navbar-nav navbar-right">
+			        <li><a href="#">Link</a></li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#">Action</a></li>
+			            <li><a href="#">Another action</a></li>
+			            <li><a href="#">Something else here</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="#">Separated link</a></li>
+			          </ul>
+			        </li>
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		</div> <!-- End navigationBar -->
+		<div id="todaysHours"></div>
+		<div id="mapDiv">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47015.89269522705!2d-71.33448177088806!3d42.56605113363376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3a1850fe99df3%3A0x22a5b08cd8372fa5!2s303+Boston+Rd%2C+North+Billerica%2C+MA+01862!5e0!3m2!1sen!2sus!4v1456536288930" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+			<div id="belowIframe">
+				<div id="contactInfo">
+					<p class="title">PHONE:
+					<p>(978) 670-1202</p>
+					<p class="title">EMAIL:</p>
+					<a id="email" href="mailto:info@garrisonsbillerica.com">info@garrisonsbillerica.com</a>
+					<p class="title">ADDRESS:</p> 
+					<p>303 Boston Road Billerica, MA 01862</p>
+				</div>
+				<div id="contactForm"> <!-- Begin Contact Form -->
+					<h1>Contact Us</h1>
+					<div id="extendedLine"></div>
+					<h2>Contact Form</h2>
+					<!-- TODO: resizing of form and map so that things look better-->
+					<form id="formContactUs">
+						<textarea id="ta" placeholder="Your Message..."></textarea>
+						<input type="text" placeholder="Your Name"></input><br>
+						<input type="text" placeholder="Email Address"></input><br>
+						<input type="text" placeholder="Phone Number"></input><br>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div ><!-- End Contact Form -->
+			</div>
+		</div> <!-- Map Div -->
+	</body>
+</html>
