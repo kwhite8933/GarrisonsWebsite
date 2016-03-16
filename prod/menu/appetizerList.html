@@ -1,0 +1,118 @@
+<div id="menu" ng-repeat="item in appetizers" class="item">
+	<!-- Adds a plus in between every appetizer so that the order of them all can be changed -->
+	<!-- TODO: uncomment when database can hangle priorities for listing menu items -->
+	<!-- Currently does not edit the correct index because items are displayed in order of insertion -->
+	<!-- <div ng-controller="addAppetizerController as addApp">
+		<strong><span data-target="#inputName">{{addApp.addName}}</span></strong>
+		<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#nameModal{{$index}}"></span>
+		<span id="delete" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteConfirmationModal{{$index}}"></span>
+		<br>
+		<span data-target="#inputDesc">{{addApp.addDescription}}</span>
+		<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#descModal{{$index}}"></span>
+		<br>
+		<span data-target="#inputPrice">{{addApp.addPrice | currency}}</span>
+		<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#priceModal{{$index}}"></span>
+		<br><br>
+		<span class="glyphicon glyphicon-plus" ng-click="addApp.toggle()"></span>
+		<div ng-hide="addApp.showForm">
+			<form id="formAddApp" ng-submit="addApp.addAppetizer($index)">
+				<br>
+				<input id="inputName" type="text" placeholder="Name" ng-model="addApp.addName"></input>
+				<input id="inputDesc" type="text" placeholder="Description" ng-model="addApp.addDescription"></input>
+				<input id="inputPrice" type="text" placeholder="Price" ng-model="addApp.addPrice"></input>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div> -->
+
+	<br>
+
+	<span><strong>{{item.name}}</strong></span>
+	<!-- <span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#nameModal{{$index}}"></span> -->
+	<!-- Edit Name Modal -->
+	<div class="modal fade" id="nameModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.name}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.name"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="updateAppetizerName($index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Name Modal -->
+	<!-- <span id="delete" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteConfirmationModal{{$index}}"></span> -->
+	<!-- Delete modal -->
+	<div id="deleteConfirmationModal{{$index}}" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<div class="modal-body">Are you sure you want to delete {{item.name}}?</div>
+		    <div class="modal-footer">
+		    	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		    	<button type="button" class="btn btn-danger" ng-click="deleteAppetizer($index)" data-dismiss="modal">Save Changes</button>
+		    </div>
+		</div>
+	  </div>
+	</div>
+	<br>
+	<span>{{item.description}}</span>
+	<!-- <span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#descModal{{$index}}"></span> -->
+	<!-- Edit Description Modal -->
+	<div class="modal fade" id="descModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.description}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input id="inputEditDescription" type="text" ng-model="item.description"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="updateAppetizerDesc($index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Description Modal -->
+	<br>
+	<span>{{item.price | currency}}</span>
+	<!-- <span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#priceModal{{$index}}"></span> -->
+	<!-- Edit Price Modal -->
+	<div class="modal fade" id="priceModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.price | currency}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.price"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="updateAppetizerPrice($index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Price Modal -->
+	<br><br>
+</div>
+<!-- <div id="addedPlus" ng-controller="addAppetizerController as addApp">
+	<strong><span data-target="#inputName">{{addApp.addName}}</span></strong><br>
+	<span data-target="#inputDesc">{{addApp.addDescription}}</span><br>
+	<span data-target="#inputPrice">{{addApp.addPrice | currency}}</span><br><br>
+	<span class="glyphicon glyphicon-plus" ng-click="addApp.toggle()"></span>
+	<div ng-hide="addApp.showForm">
+		<form id="formAddApp" ng-submit="addApp.addAppetizer($index)">
+			<br>
+			<input id="inputName" type="text" placeholder="Name" ng-model="addApp.addName"></input>
+			<input id="inputDesc" type="text" placeholder="Description" ng-model="addApp.addDescription"></input>
+			<input id="inputPrice" type="text" placeholder="Price" ng-model="addApp.addPrice"></input>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div> -->
