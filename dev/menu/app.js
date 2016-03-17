@@ -46,6 +46,7 @@
     // Updates the current appetizer's name
     // DOES NOT CHANGE THE DESCRIPTION OR PRICE
     $scope.updateAppetizerName = function(index){
+      console.log(index);
       $http({
         method: "POST",
         url: "updateAppetizer.php",
@@ -147,9 +148,11 @@
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).then(function(res){
         console.log("success");
-        console.log(res);
-        console.log(res.data.name);
-        $scope.appetizers.splice(index, 0, {name: res.data.name, description: res.data.description, price: res.data.price});
+        console.log("result: ", res);
+        console.log("data: ", res.data);
+        console.log("id: ", res.data.data.id);
+        var pushData = res.data.data;
+        $scope.appetizers.push(pushData);
       });
       // hides the form that add the appetizer
       $scope.showForm = true;

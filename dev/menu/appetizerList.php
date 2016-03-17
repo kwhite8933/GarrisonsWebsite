@@ -18,7 +18,7 @@
 	#echo "<p>Conneted to database: " . $db . "</p>";
 
 	#get all appetizers from the appetizers table.  If unsuccessful, terminate the script
-	$qSelectAll = 'SELECT * FROM appetizers';
+	$qSelectAll = 'SELECT * FROM appetizers ORDER BY name ASC';
 	$result=mysql_query($qSelectAll);
 	if( ! $result ){
 		die( 'Error loading data from appetizers' );

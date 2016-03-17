@@ -9,7 +9,7 @@ $(document).ready( function(){
 
   $.ajax({
     type: "GET",
-    url: 'contactUs.php',
+    url: 'hours.php',
     dataType: 'json',
     success: function(data){
       //console.log(data);

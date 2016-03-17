@@ -90,14 +90,34 @@
 		$description = $post_vars['description'];
 		$price = $post_vars['price'];
 
+		# gets every appetizer from the database and orders them in descending order by name
 		$sql = "INSERT INTO appetizers(name, description, price) VALUES ('$name', '$description', '$price')";
 
 		$result=mysql_query($sql);
 		if( ! $result ){
 			die( 'Error loading data from appetizers' );
 		};
-		
-		echo json_encode($post_vars);
+
+		# gets the last inserted element in the database
+		$sqlLastInserted = "SELECT * FROM appetizers ORDER BY id DESC LIMIT 1";
+
+		#checks that the query is valid
+		$res=mysql_query($sqlLastInserted);
+		if( ! $res ){
+			die( 'Error loading last iserted element from appetizers' );
+		};
+
+		# creates an associative array of the last row that was inserted into the database
+		$appData = array();
+		while( $row=mysql_fetch_row($res) ){
+			$appData['data']['id'] = $row[0];
+			$appData['data']['name'] = $row[1];
+			$appData['data']['description'] = $row[2];
+			$appData['data']['price'] = $row[3];
+		}
+
+		# send back json encoded data to javascript for manipulation there
+		echo json_encode($appData);
 
 	} #end if statement
 
