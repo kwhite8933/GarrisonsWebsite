@@ -19,25 +19,8 @@
       $scope.addDescription = "";
       $scope.addPrice = "";
     };
-    //this.menuAppetizers = appetizers;
-    //this.menuSides = sideDishes;
 
-		/*this.addAppetizer = function(index){
-      if( this.name === "" || this.description === "" || this.price === "" ){
-        return;
-      }
-			else if( index === -1 ){
-        appetizers.push({name: this.name, description: this.description, price: this.price});
-			}
-      else{
-        appetizers.splice(index, 0, {name: this.name, description: this.description, price: this.price});
-      }
-      this.name = '';
-			this.description = '';
-			this.price = '';
-		};*/
-
-    // get weekly hours from the database
+    // get appetizers from the database
     $http.get('appetizerList.php').then(function(data){
       $scope.appetizers = data.data;
       console.log($scope.appetizers);
@@ -152,60 +135,14 @@
         console.log("data: ", res.data);
         console.log("id: ", res.data.data.id);
         var pushData = res.data.data;
+        // TODO: figure out best way to push to array (.push, .splice, etc...)
+        // NOTES: could be cause of bug that inserts data in "index-1" position
         $scope.appetizers.push(pushData);
       });
       // hides the form that add the appetizer
       $scope.showForm = true;
     };
 	}]);
-
-  /*app.controller('addAppetizerController', ['$scope','$http', function($scope, $http){
-    
-    // default values for addition of an appetizer
-    this.showForm = true;
-    this.addName = "";
-    this.addDescription = "";
-    this.addprice = "";
-
-    // toggles whether or not the form to add an appetizer is shown
-    // showForm is boolean and every time toggle is called, the form data gets reset
-    this.toggle = function(){
-      this.showForm = !this.showForm;
-      this.addName = "";
-      this.addDescription = "";
-      this.addPrice = "";
-    };
-
-    // Adds appetizer to the database (name, description, price)
-    // id for the appetizer is auto incremented such that each appetizer is unique
-    // for insertion, deletion, and updating of database
-    this.addAppetizer = function(index){
-      if( index === undefined ){
-        index = $scope.appetizers.length;
-      }
-      console.log(index);
-      $http({
-        method: "POST",
-        url: "updateAppetizer.php",
-        dataType: 'json',
-        data: $.param({
-          'name': this.addName,
-          'description': this.addDescription,
-          'price': this.addPrice,
-          'field': "add"
-        }),
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }).then(function(res){
-        console.log("success");
-        console.log(res);
-        console.log(res.data.name);
-        $scope.appetizers.splice(index, 0, {name: res.data.name, description: res.data.description, price: res.data.price});
-      });
-      // hides the form that add the appetizer
-      this.showForm = true;
-    };
-
-  }]);*/
 
   // displaces the html required to view the list of appetizers for better readability of code
   app.directive('appetizerList', function(){
