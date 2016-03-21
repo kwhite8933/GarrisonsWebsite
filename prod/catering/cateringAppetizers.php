@@ -1,5 +1,5 @@
 <?php 
-	
+
 	#data to log into database
 	$servername = "localhost";
 	$username = "kwhite";
@@ -17,14 +17,14 @@
 
 	#echo "<p>Conneted to database: " . $db . "</p>";
 
-	#get all appetizers from the appetizers table.  If unsuccessful, terminate the script
-	$qSelectAll = 'SELECT * FROM appetizers ORDER BY name ASC';
+	#get all party platters from the catering_party_platters table.  If unsuccessful, terminate the script
+	$qSelectAll = 'SELECT * FROM catering_appetizers';
 	$result=mysql_query($qSelectAll);
 	if( ! $result ){
-		die( 'Error loading data from appetizers' );
+		die( 'Error loading data from catering_appetizers' );
 	}
 
-	#populate an array with appetizer data -> to be json encoded later
+	#populate an array with party platter data -> to be json encoded later
 	$index = 0;
 	$appetizers = array();
 	while( $row=mysql_fetch_row($result) ){
@@ -32,7 +32,8 @@
 		$appetizers[$index]["id"] = $row[0];
 		$appetizers[$index]["name"] = $row[1];
 		$appetizers[$index]["description"] = $row[2];
-		$appetizers[$index]["price"] = $row[3];
+		$appetizers[$index]["half_tray"] = $row[3];
+		$appetizers[$index]["full_tray"] = $row[4];
 		$index += 1;
 	}
 

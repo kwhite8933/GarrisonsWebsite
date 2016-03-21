@@ -1,0 +1,109 @@
+<div id="menu" ng-repeat="item in appetizers" class="item">
+	<br>
+	<span><strong>{{item.name}}</strong></span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editAppNameModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editAppNameModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.name}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.name"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('appetizers','name',$index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal -->
+	<span id="delete" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteAppConfirmationModal{{$index}}"></span>
+	<!-- Delete modal -->
+	<div id="deleteAppConfirmationModal{{$index}}" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<div class="modal-body">Are you sure you want to delete {{item.name}}?</div>
+		    <div class="modal-footer">
+		    	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		    	<button type="button" class="btn btn-danger" ng-click="update('appetizers','delete', $index)" data-dismiss="modal">Save Changes</button>
+		    </div>
+		</div>
+	  </div>
+	</div>
+	<br>
+	<span>{{item.description}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editAppDescModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editAppDescModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.name}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.description"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('appetizers','description', $index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal -->
+	<br>
+	<span>{{item.half_tray | currency}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editAppHTModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editAppHTModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.half_tray}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.half_tray"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('appetizers','half_tray',$index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal --> / <span>{{item.full_tray | currency}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editAppFTModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editAppFTModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.full_tray}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.full_tray"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('appetizers','full_tray',$index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal -->
+</div><br><br>
+<div id="addedPlus">
+	<!-- <strong><span data-target="#inputName">{{addApp.addName}}</span></strong><br>
+	<span data-target="#inputDesc">{{addApp.addDescription}}</span><br>
+	<span data-target="#inputPrice">{{addApp.addPrice | currency}}</span><br><br> -->
+	<span class="glyphicon glyphicon-plus" ng-click="toggle()"></span>
+	<div ng-hide="showForm">
+		<form id="formAddApp" ng-submit="addItem('appetizers',$index)">
+			<br>
+			<input id="inputName" type="text" placeholder="Name" ng-model="addName"></input>
+			<input id="inputDesc" type="text" placeholder="Description" ng-model="addDescription"></input>
+			<input id="inputHTPrice" type="text" placeholder="Half Tray Price" ng-model="addHTPrice"></input>
+			<input id="inputFTPrice" type="text" placeholder="Full Tray Price" ng-model="addFTPrice">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

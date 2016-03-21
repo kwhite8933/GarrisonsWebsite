@@ -9,7 +9,7 @@ $(document).ready( function(){
 
   $.ajax({
     type: "GET",
-    url: 'contactUs.php',
+    url: 'hours.php',
     dataType: 'json',
     success: function(data){
       //console.log(data);
@@ -18,6 +18,7 @@ $(document).ready( function(){
       for( var i=1 ; i<=data.length ; i++ ){
         if( day === i ){
           //console.log(data[i]);
+          // FORMAT: Monday hours: 11AM - Midnight
           $("#todaysHours").append( "<p>" + data[i][1] + " Hours: 11AM - " + data[i][2]);
         }
       }
