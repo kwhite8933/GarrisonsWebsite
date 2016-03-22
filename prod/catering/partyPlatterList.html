@@ -1,8 +1,109 @@
 <div id="menu" ng-repeat="item in partyPlatters" class="item">
 	<br>
 	<span><strong>{{item.name}}</strong></span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editNameModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editNameModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.name}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.name"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('partyPlatters','name',$index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal -->
+	<span id="delete" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteConfirmationModal{{$index}}"></span>
+	<!-- Delete modal -->
+	<div id="deleteConfirmationModal{{$index}}" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<div class="modal-body">Are you sure you want to delete {{item.name}}?</div>
+		    <div class="modal-footer">
+		    	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		    	<button type="button" class="btn btn-danger" ng-click="update('partyPlatters','delete', $index)" data-dismiss="modal">Save Changes</button>
+		    </div>
+		</div>
+	  </div>
+	</div>
 	<br>
 	<span>{{item.description}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editDescModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editDescModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.name}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.description"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('partyPlatters','description', $index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal -->
 	<br>
-	<span>{{item.half_tray | currency}}</span> / <span>{{item.full_tray | currency}}</span>
+	<span>{{item.half_tray | currency}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editHTModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editHTModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.half_tray}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.half_tray"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('partyPlatters','half_tray',$index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal --> / <span>{{item.full_tray | currency}}</span>
+	<span class="glypicon glyphicon-pencil" data-toggle="modal" data-target="#editFTModal{{$index}}"></span>
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editFTModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> <!-- Modal Header -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{item.full_tray}}</h4>
+				</div> <!-- Modal Header -->
+				<div class="modal-body"> <!-- Modal Body -->
+					<input type="text" ng-model="item.full_tray"></input>
+				</div> <!-- Moday Body -->
+				<div class="modal-footer"> <!-- Modal Footer -->
+					<button type="button" ng-click="update('partyPlatters','full_tray',$index)" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> <!-- Modal Footer -->
+			</div>
+		</div>
+	</div> <!-- Edit Modal -->
+</div>
+<div id="addedPlus">
+	<strong><span data-target="#inputName">{{addName}}</span></strong><br>
+	<span data-target="#inputDesc">{{addDescription}}</span><br>
+	<span data-target="#inputPrice">{{addHTPrice | currency}}</span> / <span data-target="#inputPrice">{{addFTPrice | currency}}</span><br><br>
+	<span class="glyphicon glyphicon-plus" ng-click="toggle()"></span>
+	<div ng-hide="showForm">
+		<form id="formAdd" ng-submit="addItem('partyPlatters',$index)">
+			<br>
+			<input id="inputName" type="text" placeholder="Name" ng-model="addName"></input>
+			<input id="inputDesc" type="text" placeholder="Description" ng-model="addDescription"></input>
+			<input id="inputHTPrice" type="text" placeholder="Half Tray Price" ng-model="addHTPrice"></input>
+			<input id="inputFTPrice" type="text" placeholder="Full Tray Price" ng-model="addFTPrice">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
 </div>

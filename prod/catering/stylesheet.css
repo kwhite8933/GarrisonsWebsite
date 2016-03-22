@@ -21,7 +21,7 @@ div#menu{
 /* Button at bottom of page that adds a new item if the user desires */
 div#addedPlus{
 	background-color: #FFFFF0;
-	padding-bottom: 50px;
+	padding: 50px 0px;
 	margin-bottom: 100px;
 }
 
