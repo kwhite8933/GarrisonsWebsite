@@ -25,6 +25,8 @@
 
     $scope.partyPlatters = {};
     $scope.appetizers = {};
+    $scope.salads = {};
+    $scope.saladDressings = {};
 
     // default values for addition of a platter
     $scope.showForm = true;
@@ -43,19 +45,6 @@
       $scope.addFTPrice = "";
     };
 
-    // get party platters from the database
-    $http.get('catering.php').then(function(data){
-      $scope.partyPlatters = data.data;
-      console.log($scope.partyPlatters);
-      console.log($scope.partyPlatters[0].name);
-    });
-
-    $http.get('cateringAppetizers.php').then(function(data){
-      $scope.appetizers = data.data;
-      console.log($scope.appetizers);
-      console.log($scope.appetizers[0].name);
-    });
-
     // Adds a catering item to the database (name, description, half_tray, full_tray)
     // id for the item is auto incremented such that each item is unique
     // for insertion, deletion, and updating of database
@@ -72,6 +61,12 @@
         if( index === undefined ){
           index = $scope.appetizers.length;
         } 
+      }
+      else if( table == 'salads' ){
+        var dbTable = "catering_salads";
+        if( index === undefined ){
+          index = $scope.salads.length;
+        }
       }
       console.log(index);
       $http({
@@ -92,6 +87,10 @@
         console.log("result: ", res);
         console.log("data: ", res.data);
         console.log("id: ", res.data.data.id);
+        $scope.addName = "";
+        $scope.addDescription = "";
+        $scope.addHTPrice = "";
+        $scope.addFTPrice = "";
         var pushData = res.data.data;
         // TODO: figure out best way to push to array (.push, .splice, etc...)
         // NOTES: could be cause of bug that inserts data in "index-1" position
@@ -100,6 +99,9 @@
         }
         else if( table == "partyPlatters" ){
           $scope.partyPlatters.push(pushData);
+        }
+        else if( table == "salads" ){
+          $scope.salads.push(pushData);
         }
       });
       // hides the form that add the appetizer
@@ -119,9 +121,13 @@
         var dbTable = "catering_appetizers";
         var postData = $scope.appetizers;
       }
-      else if ( table == "partyPlatters" ){
+      else if( table == "partyPlatters" ){
         var dbTable = "catering_party_platters";
         var postData = $scope.partyPlatters;
+      }
+      else if( table == "salads" ){
+        var dbTable = "catering_salads";
+        var postData = $scope.salads;
       }
       $http({
         method: "POST",
@@ -146,6 +152,9 @@
         else if( field == 'delete' && table == 'partyPlatters' ){
           $scope.partyPlatters.splice(index, 1);
         }
+        else if( field == 'delete' && table == 'salads' ){
+          $scope.salads.splice(index, 1);
+        }
         //console.log(JSON.parse(res.data));
       });
 
@@ -162,21 +171,105 @@
 
   }]);
 
-  app.directive('partyPlatters', function(){
-      return{
-        restrict: 'AE',
-        templateUrl: "partyPlatterList.html"
-      };
-    });
-
-  app.directive('appetizers', function(){
+  // gets party platter data from the database and appends it to the array of party platters
+  app.directive('partyPlatters', ['$http', function($http){
     return{
       restrict: 'AE',
-      templateUrl: "appetizersList.html"
-    };
-  });
+      templateUrl: "partyPlatterList.html",
+      controller: function($scope){
 
-  // TODO: add directive for appetizers-list data
+        $http({
+          method: "GET",
+          url: "catering.php",
+          dataType: 'json',
+          data: $.param({
+            'list': 'catering_party_platters'
+          }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(res){
+          console.log("got catering party platters data");
+          //console.log("data: ", res.data);
+          //console.log("first element: ", res.data[0]);
+          $scope.partyPlatters = res.data;
+        });
+      }
+    };
+  }]);
+
+  // gets appetizer data from the database and appends it to the array of appetizers
+  app.directive('appetizers', ['$http', function($http){
+    return{
+      restrict: 'AE',
+      templateUrl: "appetizersList.html",
+      controller: function($scope){
+
+        $http({
+          method: "GET",
+          url: "cateringAppetizers.php",
+          dataType: 'json',
+          data: $.param({
+            'list': 'catering_appetizers'
+          }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(res){
+          console.log("got catering appetizers data");
+          //console.log("data: ", res.data);
+          //console.log("first element: ", res.data[0]);
+          $scope.appetizers = res.data;
+        });
+      }
+    };
+  }]);
+
+  // gets salads data from the database and appends it to the array of salads
+  app.directive('salads', ['$http', function($http){
+    return{
+      restrict: 'AE',
+      templateUrl: "saladsList.html",
+      controller: function($scope){
+
+        $http({
+          method: "GET",
+          url: "cateringSalads.php",
+          dataType: 'json',
+          data: $.param({
+            'list': 'catering_salads'
+          }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(res){
+          console.log("got catering salads data");
+          //console.log("data: ", res.data);
+          //console.log("first element: ", res.data[0]);
+          $scope.salads = res.data;
+        });
+      }
+    };
+  }]);
+
+  // gets salad dressings data from the database and appends it to the array of salad dressings
+  app.directive('saladDressings', ['$http', function($http){
+    return{
+      restrict: 'AE',
+      templateUrl: "saladDressingsList.html",
+      controller: function($scope){
+
+        $http({
+          method: "GET",
+          url: "saladDressings.php",
+          dataType: 'json',
+          data: $.param({
+            'list': 'catering_salad_dressings'
+          }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(res){
+          console.log("got catering salad dressings data");
+          //console.log("data: ", res.data);
+          //console.log("first element: ", res.data[0]);
+          $scope.saladDressings = res.data;
+        });
+      }
+    };
+  }]);
 
 })();
 
